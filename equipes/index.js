@@ -1,3 +1,15 @@
+/**
+ * Microserivce de gestion des personnes
+ * 
+ * Ce microservice permet de gérer les personnes leurs persistance dans une base de données MongoDB.
+ * 
+ * C'est un code d'exemple minimaliste utilisant Express et MongoDB.
+ * 
+ * - Express est une librairie Node.js permettant de créer un serveur HTTP et gérer les routes.
+ * - MongoDB est une base de données NoSQL orientée document. 
+ *      MongoDB se base sur des documents
+*/
+// Imports des librairies
 const express = require('express');
 const mongo = require('mongodb');
 

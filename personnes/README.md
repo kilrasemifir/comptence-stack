@@ -14,7 +14,7 @@ Ce microservice permet de gérer les personnes et leurs persistance en base de d
 Lancer la commande suivante :
 
 ```bash
-gradlew run
+gradlew bootRun
 ```
 
 ou depuis un IDE, lancer la classe `PersonnesApplication`

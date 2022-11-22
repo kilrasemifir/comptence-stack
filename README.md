@@ -31,8 +31,13 @@ Pour lancer le microserivce `personnes`, il faut lancer la commande suivante :
 
 ```bash
 cd personnes
-gradlew run
+# En windows
+./gradlew bootRun
+# En linux ou mac
+bash gradlew bootRun
 ```
+
+si vous 
 
 Pour lancer le microserivce `equipes`, il faut lancer la commande suivante :
 
