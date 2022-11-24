@@ -21,3 +21,9 @@ Lancer la commande suivante :
 ```bash
 docker-compose up -d
 ```
+
+Si la mise à jour des images est nécessaire, lancer la commande suivante :
+
+```bash
+docker-compose up -d --build
+```
