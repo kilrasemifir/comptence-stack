@@ -17,6 +17,7 @@ services:
       - mongo
     environment:
       - ME_CONFIG_MONGODB_SERVER=mongo
+      - ME_CONFIG_SITE_BASEURL=/mongo
   web:
     image: nginx
     volumes:
