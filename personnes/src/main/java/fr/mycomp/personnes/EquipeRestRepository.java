@@ -11,6 +11,8 @@ import org.springframework.web.client.RestTemplate;
 @Repository
 public class EquipeRestRepository {
 
+    @Value("${EQUIPES_URL:http://equipes:3000/api/equipes}")
+    private String equipeUrl;
     /**
      * RestTemplate est une classe de Spring qui permet de faire des requêtes HTTP
      */
@@ -25,7 +27,7 @@ public class EquipeRestRepository {
         if (personne == null) throw  new IllegalArgumentException("La personne ne peut pas être null");
         if (personne.getEquipeId()==null) throw new IllegalArgumentException("La personne n'a pas d'équipe");
 
-        String url = "http://localhost:3000/api/equipes/"+personne.getEquipeId()+"/personnes";
+        String url = equipeUrl+personne.getEquipeId()+"/personnes";
         restTemplate.put( url , personne, Void.class);
     }
 
@@ -38,7 +40,7 @@ public class EquipeRestRepository {
     public void removeToEquipe(Personne personne) {
         if (personne == null) throw  new IllegalArgumentException("La personne ne peut pas être null");
         if (personne.getEquipeId()==null) throw new IllegalArgumentException("La personne n'a pas d'équipe");
-        String url = "http://localhost:3000/api/equipes/"+personne.getEquipeId()+"/personnes/"+personne.getId();
+        String url = equipeUrl+personne.getEquipeId()+"/personnes/"+personne.getId();
         restTemplate.delete( url , personne, Void.class);
     }
 }
