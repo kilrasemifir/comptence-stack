@@ -20,6 +20,12 @@
  *     ] 
  * }
 */
+// variables d'environnement
+const PORT = process.env.PORT || 3000;
+const MONGO_HOST = process.env.MONGO_HOST || "mongo";
+const MONGO_PORT = process.env.MONGO_PORT || 27017;
+const MONGO_DB = process.env.MONGO_DB || "equipes";
+
 // Imports des librairies
 const express = require('express'); // express pour créer un serveur HTTP
 const mongo = require('mongodb');  // mongodb pour se connecter à la base de données
@@ -34,9 +40,9 @@ server.use(express.json());
  */
 const main = async () => {
     // Création de la connexion à la base de données
-    const client = await mongo.MongoClient.connect('mongodb://localhost:27017');
+    const client = await mongo.MongoClient.connect(`mongodb://${MONGO_HOST}:${MONGO_PORT}`, { useNewUrlParser: true });
     // Récupération de la base de données "equipes"
-    const db = client.db('equipes');
+    const db = client.db(MONGO_DB);
     // Récupération de la collection "equipes"
     const equipes = db.collection('equipes');
 
@@ -161,7 +167,7 @@ const main = async () => {
         
 
     // Lancement du serveur HTTP sur le port 3000
-    server.listen(3000, () => {
+    server.listen(PORT, () => {
         console.log('Server started on port 3000');
     });
 }

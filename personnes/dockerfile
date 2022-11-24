@@ -1,0 +1,17 @@
+# Création d'une image pour la construction de l'artefact .jar
+# Ce n'est pas une image de production
+FROM gradle:7.2.0-jdk11 AS build
+# Equivalent de cd. Permet de definir le repertoire de travail dans le container
+WORKDIR /home/source/java
+# Copie du fichier gradle
+COPY . .
+
+# Construction de l'artefact .jar
+RUN gradle bootJar
+
+# Création de l'image de production
+FROM openjdk:11-jre-slim
+# Copie de l'artefact .jar depuis le container de build
+COPY --from=build /home/source/java/build/libs/personnes-0.0.1-SNAPSHOT.jar app.jar
+
+CMD ["java", "-jar", "app.jar"]

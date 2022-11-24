@@ -26,4 +26,24 @@ services:
     volumes:
     # <source local>:<dossier dans le container>
     - ./web/index.html:/usr/share/nginx/html/index.html
+  equipes:
+    build: ./equipes
+    ports:
+      - 3000:3000
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_URL=mongo
+      - MONGO_PORT=27017
+      - MONGO_DB=equipes
+  personnes:
+    build: ./personnes
+    ports:
+      - 8080:8080
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_URL=mongo
+      - MONGO_PORT=27017
+      - MONGO_DB=personnes
       
