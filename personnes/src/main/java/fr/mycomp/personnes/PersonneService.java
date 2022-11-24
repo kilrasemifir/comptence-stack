@@ -69,4 +69,18 @@ public class PersonneService {
     public Iterable<Personne> getAllPersonnes() {
         return personneRepository.findAll();
     }
+
+    public Personne patch(Personne personne) {
+        Personne oldPersonne = getPersonne(personne.getId());
+        if (personne.getNom() != null) {
+            oldPersonne.setNom(personne.getNom());
+        }
+        if (personne.getPrenom() != null) {
+            oldPersonne.setPrenom(personne.getPrenom());
+        }
+        if (personne.getEquipeId() != null) {
+            oldPersonne.setEquipeId(personne.getEquipeId());
+        }
+        return updatePersonne(oldPersonne);
+    }
 }

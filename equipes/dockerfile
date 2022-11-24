@@ -1,0 +1,21 @@
+# Utilisation de l'image officielle de Docker node comme base
+FROM node:16-alpine
+
+# Copie du fichier package.json dans l'image
+# host -> image
+# Copie du code source dans l'image
+
+COPY package.json package.json
+COPY index.js index.js
+
+# Installation des dépendances avec le script npm install
+RUN npm install
+
+# Lors du démarrage du container, on lance le script npm start
+CMD ["npm", "start"]
+
+
+
+
+
+

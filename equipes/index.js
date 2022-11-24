@@ -67,7 +67,6 @@ const main = async () => {
 
         // SELECT * FROM equipes WHERE _id = ? <=> equipes.find({ _id: id })
         const result = await equipes.findOne({ _id: mongo.ObjectId(id) });
-        console.log(result, id);
         res.json(result);
     });
 

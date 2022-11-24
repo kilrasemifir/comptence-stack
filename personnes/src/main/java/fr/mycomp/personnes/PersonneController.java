@@ -68,4 +68,9 @@ public class PersonneController {
         personneService.deletePersonne(id);
     }
 
+    @PatchMapping("/{id}")
+    public Personne patchPersonne(@PathVariable String id, @RequestBody Personne personne) {
+        return personneService.patch(personne);
+    }
+
 }
