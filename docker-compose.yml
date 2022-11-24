@@ -5,8 +5,6 @@ services:
     # Image docker a utiliser, ici mongo
     image: mongo
     # Ports a ouvrir sur le reseau docker
-    ports:
-      - 27017:27017
     volumes:
       - ./db/mongo/data:/data/db
       - ./db/mongo/init:/docker-entrypoint-initdb.d
@@ -14,9 +12,6 @@ services:
   mongo-express:
     # Image docker a utiliser, ici mongo-express
     image: mongo-express
-    # Ports a ouvrir sur le reseau docker
-    ports:
-      - 8081:8081
     # Mongo-express a besoin d'attendre que mongo soit pret avant de se lancer
     depends_on:
       - mongo
@@ -24,27 +19,30 @@ services:
       - ME_CONFIG_MONGODB_SERVER=mongo
   web:
     image: nginx
-    ports:
-      - 80:80
     volumes:
     # <source local>:<dossier dans le container>
     - ./web/index.html:/usr/share/nginx/html/index.html
   equipes:
     build: ./equipes
-    ports:
-      - 3000:3000
     depends_on:
       - mongo
     environment:
       - MONGO_DB=equipes
   personnes:
     build: ./personnes
-    ports:
-      - 8080:8080
     depends_on:
       - mongo
     environment:
       - MONGO_DB=personnes
       - EQUIPES_URL=http://equipes:3000/api/equipes
-    
+  
+  gateway:
+    image: nginx
+    ports:
+      - 80:80
+    depends_on:
+      - personnes
+      - equipes
+    volumes:
+      - ./gateway/nginx.conf:/etc/nginx/conf.d/default.conf
 
