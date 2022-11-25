@@ -10,6 +10,7 @@ services:
       - ./db/mongo/init:/docker-entrypoint-initdb.d
   # Un autre service pour avoir une UI de mongo
   mongo-express:
+    profiles: ["dev"]
     # Image docker a utiliser, ici mongo-express
     image: mongo-express
     # Mongo-express a besoin d'attendre que mongo soit pret avant de se lancer

@@ -28,7 +28,7 @@ public class EquipeRestRepository {
         if (personne == null) throw  new IllegalArgumentException("La personne ne peut pas être null");
         if (personne.getEquipeId()==null) throw new IllegalArgumentException("La personne n'a pas d'équipe");
 
-        String url = equipeUrl+personne.getEquipeId()+"/personnes";
+        String url = equipeUrl+"/"+personne.getEquipeId()+"/personnes";
         restTemplate.put( url , personne, Void.class);
     }
 
@@ -41,7 +41,7 @@ public class EquipeRestRepository {
     public void removeToEquipe(Personne personne) {
         if (personne == null) throw  new IllegalArgumentException("La personne ne peut pas être null");
         if (personne.getEquipeId()==null) throw new IllegalArgumentException("La personne n'a pas d'équipe");
-        String url = equipeUrl+personne.getEquipeId()+"/personnes/"+personne.getId();
+        String url = equipeUrl+"/"+personne.getEquipeId()+"/personnes/"+personne.getId();
         restTemplate.delete( url , personne, Void.class);
     }
 }
